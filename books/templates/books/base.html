@@ -1,0 +1,6 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Моя книжная полка</title><link rel="stylesheet" href="{% static 'css/style.css' %}"></head>
+<body><main class="container"><header><a class="brand" href="{% url 'book_list' %}">Моя книжная полка</a><a class="button" href="{% url 'add_book' %}">+ Добавить книгу</a></header>{% block content %}{% endblock %}</main></body>
+</html>

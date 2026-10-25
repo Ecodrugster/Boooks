@@ -1,0 +1,28 @@
+{% extends 'books/base.html' %}
+{% block content %}
+<section class="intro">
+    <p class="eyebrow">Личная коллекция</p>
+    <h1>Книги, которые хочется прочитать</h1>
+    <p>В каталоге: <strong>{{ books|length }}</strong> книг</p>
+</section>
+{% if books %}
+    <div class="book-grid">
+        {% for book in books %}
+        <article class="card">
+            <div class="card-top">
+                <h2>{{ book.title }}</h2>
+                <span class="status {% if book.is_read %}read{% else %}unread{% endif %}">{% if book.is_read %}Прочитана{% else %}Ещё не прочитана{% endif %}</span>
+            </div>
+            <p class="author">{{ book.author }}</p>
+            <p>{{ book.description }}</p>
+        </article>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="empty">
+        <h2>Полка пока пуста</h2>
+        <p>Вы пока не добавили ни одной книги.</p>
+        <a href="{% url 'add_book' %}">Добавить первую книгу</a>
+    </div>
+{% endif %}
+{% endblock %}

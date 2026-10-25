@@ -1,0 +1,23 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<section class="form-wrap">
+    <p class="eyebrow">Новая запись</p>
+    <h1>Добавить книгу</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+        <div class="field">
+            {{ field.label_tag }}
+            {{ field }}
+            {% for error in field.errors %}
+            <small class="error">{{ error }}</small>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <button class="button" type="submit">Добавить книгу</button>
+    </form>
+    <a class="back" href="{% url 'book_list' %}">← Вернуться к списку</a>
+</section>
+{% endblock %}
